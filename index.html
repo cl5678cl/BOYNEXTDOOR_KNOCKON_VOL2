@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BND KNOCK ON VOL.2 Planner</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const tourData = [
+            { id: 1, city: "首爾", venue: "KSPO Dome", date: "2026 07/17–07/19" },
+            { id: 2, city: "釜山", venue: "Sajik Gymnasium", date: "2026 08/01–08/02" },
+            { id: 3, city: "神奈川", venue: "K-Arena Yokohama", date: "2026 08/21–08/23" },
+            { id: 4, city: "佐賀", venue: "Saga Arena", date: "2026 08/29–08/30" },
+            { id: 5, city: "大阪", venue: "Osaka-jō Hall", date: "2026 09/09–09/10" },
+            { id: 6, city: "宮城", venue: "Sekisui Heim Super Arena", date: "2026 09/19–09/20" },
+            { id: 7, city: "長野", venue: "Big Hat", date: "2026 09/25–09/26" },
+            { id: 8, city: "千葉", venue: "LaLa arena TOKYO-BAY", date: "2026 10/10–10/11" },
+            { id: 9, city: "達拉斯", venue: "The Bomb Factory", date: "2026 10/30" },
+            { id: 10, city: "佛州", venue: "Pompano Beach Amphitheater", date: "2026 11/01" },
+            { id: 11, city: "芝加哥", venue: "The Salt Shed", date: "2026 11/04" },
+            { id: 12, city: "紐約", venue: "Madison Square Garden", date: "2026 11/07" },
+            { id: 13, city: "多倫多", venue: "Queen Elizabeth Theatre", date: "2026 11/10" },
+            { id: 14, city: "溫哥華", venue: "Queen Elizabeth Theatre", date: "2026 11/13" },
+            { id: 15, city: "西雅圖", venue: "Showbox SoDo", date: "2026 11/15" },
+            { id: 16, city: "舊金山", venue: "The Warfield", date: "2026 11/17" },
+            { id: 17, city: "洛杉磯", venue: "Peacock Theater", date: "2026 11/20" },
+            { id: 18, city: "墨西哥城", venue: "Arena Ciudad de México", date: "2026 11/24" },
+            { id: 19, city: "雅加達", venue: "ICE BSD Hall 5-6", date: "2026 12/05" },
+            { id: 20, city: "吉隆坡", venue: "Unifi Arena", date: "2026 12/26" },
+            { id: 21, city: "台北/桃園", venue: "NTSU Arena", date: "2027 01/09" },
+            { id: 22, city: "香港", venue: "AsiaWorld-Arena", date: "2027 01/16" },
+            { id: 23, city: "新加坡", venue: "Singapore Indoor Stadium", date: "2027 01/23" },
+            { id: 24, city: "曼谷", venue: "Impact Arena", date: "2027 01/30" }
+        ];
+
+        function App() {
+            const [selectedTourId, setSelectedTourId] = useState('');
+            const [plans, setPlans] = useState({});
+
+            useEffect(() => {
+                const saved = localStorage.getItem('bnd-plans');
+                if (saved) setPlans(JSON.parse(saved));
+            }, []);
+
+            useEffect(() => {
+                localStorage.setItem('bnd-plans', JSON.stringify(plans));
+            }, [plans]);
+
+            const addPlan = (type) => {
+                const content = prompt(`請輸入${type}內容:`);
+                if (!content) return;
+                const cost = (type === '💰 花費') ? parseFloat(prompt("金額:") || 0) : 0;
+                
+                const newPlans = {...plans};
+                if (!newPlans[selectedTourId]) newPlans[selectedTourId] = [];
+                newPlans[selectedTourId].push({ id: Date.now(), type, content, cost });
+                setPlans(newPlans);
+            };
+
+            const currentTour = tourData.find(t => t.id == selectedTourId);
+            const total = (plans[selectedTourId] || []).reduce((s, i) => s + i.cost, 0);
+
+            return (
+                <div className="max-w-md mx-auto p-6">
+                    <h1 className="text-3xl font-black text-blue-600 text-center mb-2">🚪 KNOCK ON</h1>
+                    <p className="text-center text-gray-500 mb-8 font-medium">BOYNEXTDOOR Tour Planner</p>
+
+                    <select 
+                        className="w-full p-3 rounded-xl border-2 border-blue-200 focus:border-blue-500 outline-none mb-6 shadow-sm"
+                        onChange={(e) => setSelectedTourId(e.target.value)}
+                    >
+                        <option value="">-- 選擇巡演場次 --</option>
+                        {tourData.map(t => <option key={t.id} value={t.id}>{t.city} ({t.date})</option>)}
+                    </select>
+
+                    {currentTour ? (
+                        <div className="bg-white rounded-2xl p-6 shadow-xl border border-blue-50">
+                            <h2 className="text-xl font-bold text-gray-800">{currentTour.city} 站</h2>
+                            <p className="text-blue-500 text-sm mb-6">📍 {currentTour.venue}</p>
+
+                            <div className="grid grid-cols-2 gap-2 mb-6">
+                                {['🏠 住宿', '✈️ 交通', '💰 花費', '📍 行程'].map(label => (
+                                    <button 
+                                        key={label}
+                                        onClick={() => addPlan(label)}
+                                        className="bg-blue-50 hover:bg-blue-100 text-blue-700 py-2 rounded-lg text-sm font-bold transition"
+                                    >+ {label}</button>
+                                ))}
+                            </div>
+
+                            <div className="space-y-3">
+                                {(plans[selectedTourId] || []).map(item => (
+                                    <div key={item.id} className="flex justify-between items-center p-3 bg-slate-50 rounded-lg border-l-4 border-blue-400">
+                                        <div>
+                                            <span className="text-xs font-bold text-blue-400 block uppercase">{item.type}</span>
+                                            <span className="text-gray-700">{item.content}</span>
+                                            {item.cost > 0 && <span className="ml-2 text-green-600 font-bold">${item.cost}</span>}
+                                        </div>
+                                        <button onClick={() => {
+                                            const updated = plans[selectedTourId].filter(i => i.id !== item.id);
+                                            setPlans({...plans, [selectedTourId]: updated});
+                                        }} className="text-gray-300 hover:text-red-500">✕</button>
+                                    </div>
+                                ))}
+                            </div>
+                            {total > 0 && <div className="mt-6 text-right font-black text-blue-600 text-lg">Total: ${total}</div>}
+                        </div>
+                    ) : (
+                        <div className="text-center py-20 bg-white/50 rounded-3xl border-2 border-dashed border-slate-300">
+                            <p className="text-slate-400 font-medium">點擊上方選擇場次<br/>開始規劃你的追星之旅吧！</p>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
