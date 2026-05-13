@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BND 'KNOCK ON' VOL.2 Planner Ultimate</title>
+    <title>BOYNEXTDOOR TOUR 'KNOCK ON' Vol.2</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -13,7 +13,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+TC:wght@400;700;900&display=swap');
         body { font-family: 'Inter', 'Noto Sans TC', sans-serif; -webkit-tap-highlight-color: transparent; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .modal-blur { backdrop-filter: blur(8px); webkit-backdrop-filter: blur(8px); }
+        .modal-blur { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
     </style>
 </head>
 <body class="bg-[#F8FAFC] text-slate-900">
@@ -28,37 +28,33 @@
         };
 
         const tourData = [
-            // 韓國
-            { id: 1, region: "1. 韓國", city: "首爾", venue: "KSPO Dome", date: "2026 07/17–07/19", currency: "KRW" },
-            { id: 2, region: "1. 韓國", city: "釜山", venue: "Busan Sajik Gymnasium", date: "2026 08/01–08/02", currency: "KRW" },
-            // 日本
-            { id: 3, region: "2. 日本", city: "神奈川", venue: "K-Arena Yokohama", date: "2026 08/21–08/23", currency: "JPY" },
-            { id: 4, region: "2. 日本", city: "佐賀", venue: "Saga Arena", date: "2026 08/29–08/30", currency: "JPY" },
-            { id: 5, region: "2. 日本", city: "大阪", venue: "Osaka-jō Hall", date: "2026 09/09–09/10", currency: "JPY" },
-            { id: 6, region: "2. 日本", city: "宮城", venue: "Sekisui Heim Super Arena", date: "2026 09/19–09/20", currency: "JPY" },
-            { id: 7, region: "2. 日本", city: "長野", venue: "Big Hat", date: "2026 09/25–09/26", currency: "JPY" },
-            { id: 8, region: "2. 日本", city: "千葉", venue: "LaLa arena TOKYO-BAY", date: "2026 10/10–10/11", currency: "JPY" },
-            // 北美
-            { id: 9, region: "3. 北美", city: "達拉斯", venue: "The Bomb Factory", date: "2026 10/30", currency: "USD" },
-            { id: 10, region: "3. 北美", city: "佛州", venue: "Pompano Beach Amphitheater", date: "2026 11/01", currency: "USD" },
-            { id: 11, region: "3. 北美", city: "芝加哥", venue: "The Salt Shed", date: "2026 11/04", currency: "USD" },
-            { id: 12, region: "3. 北美", city: "紐約", venue: "Madison Square Garden", date: "2026 11/07", currency: "USD" },
-            { id: 13, region: "3. 北美", city: "多倫多", venue: "Queen Elizabeth Theatre", date: "2026 11/10", currency: "CAD" },
-            { id: 14, region: "3. 北美", city: "溫哥華", venue: "Queen Elizabeth Theatre", date: "2026 11/13", currency: "CAD" },
-            { id: 15, region: "3. 北美", city: "西雅圖", venue: "Showbox SoDo", date: "2026 11/15", currency: "USD" },
-            { id: 16, region: "3. 北美", city: "舊金山", venue: "The Warfield", date: "2026 11/17", currency: "USD" },
-            { id: 17, region: "3. 北美", city: "洛杉磯", venue: "Peacock Theater", date: "2026 11/20", currency: "USD" },
-            { id: 18, region: "3. 北美", city: "墨西哥城", venue: "Arena Ciudad de México", date: "2026 11/24", currency: "MXN" },
-            // 亞洲
-            { id: 19, region: "4. 亞洲", city: "雅加達", venue: "ICE BSD Hall 5-6", date: "2026 12/05", currency: "IDR" },
-            { id: 20, region: "4. 亞洲", city: "吉隆坡", venue: "Unifi Arena", date: "2026 12/26", currency: "MYR" },
-            { id: 21, region: "4. 亞洲", city: "台北／桃園", venue: "NTSU Arena", date: "2027 01/09", currency: "TWD" },
-            { id: 22, region: "4. 亞洲", city: "香港", venue: "AsiaWorld-Arena", date: "2027 01/16", currency: "HKD" },
-            { id: 23, region: "4. 亞洲", city: "新加坡", venue: "Singapore Indoor Stadium", date: "2027 01/23", currency: "SGD" },
-            { id: 24, region: "4. 亞洲", city: "曼谷", venue: "Impact Arena", date: "2027 01/30", currency: "THB" }
+            { id: 1, region: "韓國", city: "首爾", venue: "KSPO Dome", date: "2026 07/17–07/19", currency: "KRW" },
+            { id: 2, region: "韓國", city: "釜山", venue: "Busan Sajik Gymnasium", date: "2026 08/01–08/02", currency: "KRW" },
+            { id: 3, region: "日本", city: "神奈川", venue: "K-Arena Yokohama", date: "2026 08/21–08/23", currency: "JPY" },
+            { id: 4, region: "日本", city: "佐賀", venue: "Saga Arena", date: "2026 08/29–08/30", currency: "JPY" },
+            { id: 5, region: "日本", city: "大阪", venue: "Osaka-jō Hall", date: "2026 09/09–09/10", currency: "JPY" },
+            { id: 6, region: "日本", city: "宮城", venue: "Sekisui Heim Super Arena", date: "2026 09/19–09/20", currency: "JPY" },
+            { id: 7, region: "日本", city: "長野", venue: "Big Hat", date: "2026 09/25–09/26", currency: "JPY" },
+            { id: 8, region: "日本", city: "千葉", venue: "LaLa arena TOKYO-BAY", date: "2026 10/10–10/11", currency: "JPY" },
+            { id: 9, region: "北美", city: "達拉斯", venue: "The Bomb Factory", date: "2026 10/30", currency: "USD" },
+            { id: 10, region: "北美", city: "佛羅里達", venue: "Pompano Beach Amphitheater", date: "2026 11/01", currency: "USD" },
+            { id: 11, region: "北美", city: "芝加哥", venue: "The Salt Shed", date: "2026 11/04", currency: "USD" },
+            { id: 12, region: "北美", city: "紐約", venue: "Madison Square Garden", date: "2026 11/07", currency: "USD" },
+            { id: 13, region: "北美", city: "多倫多", venue: "Queen Elizabeth Theatre", date: "2026 11/10", currency: "CAD" },
+            { id: 14, region: "北美", city: "溫哥華", venue: "Queen Elizabeth Theatre", date: "2026 11/13", currency: "CAD" },
+            { id: 15, region: "北美", city: "西雅圖", venue: "Showbox SoDo", date: "2026 11/15", currency: "USD" },
+            { id: 16, region: "北美", city: "舊金山", venue: "The Warfield", date: "2026 11/17", currency: "USD" },
+            { id: 17, region: "北美", city: "洛杉磯", venue: "Peacock Theater", date: "2026 11/20", currency: "USD" },
+            { id: 18, region: "北美", city: "墨西哥城", venue: "Arena Ciudad de México", date: "2026 11/24", currency: "MXN" },
+            { id: 19, region: "亞洲", city: "雅加達", venue: "ICE BSD Hall 5-6", date: "2026 12/05", currency: "IDR" },
+            { id: 20, region: "亞洲", city: "吉隆坡", venue: "Unifi Arena", date: "2026 12/26", currency: "MYR" },
+            { id: 21, region: "亞洲", city: "台北／桃園", venue: "NTSU Arena", date: "2027 01/09", currency: "TWD" },
+            { id: 22, region: "亞洲", city: "香港", venue: "AsiaWorld-Arena", date: "2027 01/16", currency: "HKD" },
+            { id: 23, region: "亞洲", city: "新加坡", venue: "Singapore Indoor Stadium", date: "2027 01/23", currency: "SGD" },
+            { id: 24, region: "亞洲", city: "曼谷", venue: "Impact Arena", date: "2027 01/30", currency: "THB" }
         ];
 
-        const regions = ["1. 韓國", "2. 日本", "3. 北美", "4. 亞洲"];
+        const regions = ["韓國", "日本", "北美", "亞洲"];
 
         function App() {
             const [selectedId, setSelectedId] = useState(null);
@@ -69,12 +65,12 @@
             const [form, setForm] = useState({ type: '', content: '', costTwd: '', costForeign: '', transportMode: '飛機', flightOut: '', flightBack: '' });
 
             useEffect(() => {
-                const saved = localStorage.getItem('bnd-planner-final');
+                const saved = localStorage.getItem('bnd-planner-v6');
                 if (saved) setPlans(JSON.parse(saved));
             }, []);
 
             useEffect(() => {
-                localStorage.setItem('bnd-planner-final', JSON.stringify(plans));
+                localStorage.setItem('bnd-planner-v6', JSON.stringify(plans));
             }, [plans]);
 
             const currentTour = tourData.find(t => t.id === selectedId);
@@ -94,18 +90,28 @@
 
             const totalTwd = (plans[selectedId] || []).reduce((s, i) => s + (i.costTwd || 0), 0);
 
+            // 地圖連結邏輯：韓國場次使用 Naver Map，其餘使用 Google Map
+            const getMapUrl = (venue, city, region) => {
+                if (region === "韓國") {
+                    return `https://map.naver.com/v5/search/${encodeURIComponent(venue + ' ' + city)}`;
+                }
+                return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue + ' ' + city)}`;
+            };
+
             return (
                 <div className="max-w-xl mx-auto min-h-screen pb-12 px-5">
                     <header className="py-12 text-center">
-                        <h1 className="text-4xl font-[900] text-blue-600 tracking-tighter italic">KNOCK ON VOL.2</h1>
-                        <p className="text-slate-400 font-bold text-[10px] tracking-[0.3em] uppercase mt-2">Personal Tour Planner</p>
+                        <h1 className="text-4xl font-[900] text-blue-600 tracking-tighter italic leading-tight">
+                            BOYNEXTDOOR TOUR<br/>'KNOCK ON' Vol.2
+                        </h1>
+                        <p className="text-slate-400 font-bold text-xs tracking-[0.4em] uppercase mt-4">巡演制霸計畫</p>
                     </header>
 
                     {!selectedId ? (
                         <div className="space-y-4">
                             {regions.map(region => (
                                 <div key={region} className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
-                                    <button onClick={() => setExpandedRegion(expandedRegion === region ? null : region)} className="w-full flex justify-between items-center p-7 hover:bg-slate-50 transition font-black text-slate-800">
+                                    <button onClick={() => setExpandedRegion(expandedRegion === region ? null : region)} className="w-full flex justify-between items-center p-7 hover:bg-slate-50 transition font-black text-slate-800 text-lg">
                                         {region}
                                         <i className={`fas fa-chevron-${expandedRegion === region ? 'up' : 'down'} text-blue-500`}></i>
                                     </button>
@@ -117,7 +123,7 @@
                                                         <div className="font-bold text-slate-700">{t.city}</div>
                                                         <div className="text-[10px] text-slate-400 font-black uppercase mt-1 tracking-widest">{t.venue}</div>
                                                     </div>
-                                                    <div className="text-[11px] font-black text-blue-500 italic">{t.date.split(',')[0]}</div>
+                                                    <div className="text-[11px] font-black text-blue-500 italic">{t.date.split(' ')[1]}</div>
                                                 </button>
                                             ))}
                                         </div>
@@ -128,33 +134,34 @@
                     ) : (
                         <div className="animate-in fade-in duration-500">
                             <button onClick={() => setSelectedId(null)} className="mb-6 text-slate-400 font-black text-[10px] tracking-widest uppercase flex items-center hover:text-blue-600 transition">
-                                <i className="fas fa-arrow-left mr-2"></i> Back to Regions
+                                <i className="fas fa-arrow-left mr-2"></i> 返回區域選擇
                             </button>
                             
                             <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-blue-50">
                                 <div className="flex justify-between items-end mb-6">
-                                    <div>
+                                    <div className="flex-1">
                                         <h2 className="text-4xl font-[900] text-slate-800 italic tracking-tighter">{currentTour.city}</h2>
-                                        <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(currentTour.venue + ' ' + currentTour.city)}`} target="_blank" className="text-blue-500 font-bold text-xs mt-2 inline-block">
-                                            <i className="fas fa-map-location-dot mr-1"></i> {currentTour.venue}
+                                        <a href={getMapUrl(currentTour.venue, currentTour.city, currentTour.region)} target="_blank" className="text-blue-500 font-bold text-xs mt-2 inline-flex items-center">
+                                            <i className="fas fa-map-location-dot mr-1 text-sm"></i> 
+                                            {currentTour.region === "韓國" ? "使用 Naver Map 查看場館" : currentTour.venue}
                                         </a>
                                     </div>
-                                    <div className="text-right">
-                                        <div className="text-[10px] font-black text-slate-300 uppercase tracking-tighter">Currency</div>
-                                        <div className="font-black text-slate-400 italic">1 {currentTour.currency} : {RATES[currentTour.currency]}</div>
+                                    <div className="text-right ml-4">
+                                        <div className="text-[9px] font-black text-slate-300 uppercase tracking-tighter">當前匯率參考</div>
+                                        <div className="font-black text-slate-400 italic text-sm">1 {currentTour.currency} : {RATES[currentTour.currency]} TWD</div>
                                     </div>
                                 </div>
 
                                 <div className="bg-slate-900 rounded-[2rem] p-7 text-white shadow-2xl shadow-blue-100 mb-8">
-                                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Total Estimated Budget</div>
+                                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">預估總花費</div>
                                     <div className="text-3xl font-[900] italic tracking-tighter text-blue-400">TWD {totalTwd.toLocaleString()}</div>
                                 </div>
 
                                 <div className="grid grid-cols-3 gap-3">
-                                    {[{l:'住宿', i:'fa-bed'}, {l:'交通', i:'fa-plane'}, {l:'行程', i:'fa-star'}].map(btn => (
+                                    {[{l:'住宿', i:'fa-bed'}, {l:'交通', i:'fa-plane'}, {l:'追星清單', i:'fa-clipboard-check'}].map(btn => (
                                         <button key={btn.l} onClick={() => { setEditingId(null); setForm({ type: btn.l, content: '', costTwd: '', costForeign: '', transportMode: '飛機', flightOut: '', flightBack: '' }); setShowModal(true); }} className="flex flex-col items-center justify-center bg-slate-50 p-5 rounded-2xl border border-slate-100 hover:bg-blue-600 hover:text-white transition group">
                                             <i className={`fas ${btn.i} mb-2 text-blue-500 group-hover:text-white transition`}></i>
-                                            <span className="text-xs font-black uppercase">{btn.l}</span>
+                                            <span className="text-[11px] font-black uppercase whitespace-nowrap">{btn.l}</span>
                                         </button>
                                     ))}
                                 </div>
@@ -165,13 +172,13 @@
                                             <div className="flex-1">
                                                 <div className="flex items-center gap-2 mb-1">
                                                     <span className="text-[8px] font-black bg-blue-100 text-blue-600 px-2 py-0.5 rounded uppercase">{item.type}</span>
-                                                    {item.costTwd > 0 && <span className="text-[10px] font-black text-slate-400">TWD {item.costTwd.toLocaleString()}</span>}
+                                                    {item.costTwd > 0 && <span className="text-[10px] font-black text-slate-400 tracking-tighter">TWD {item.costTwd.toLocaleString()}</span>}
                                                 </div>
                                                 <div className="text-slate-800 font-bold">
-                                                    {item.type === '交通' && item.transportMode === '飛機' ? `${item.flightOut} → ${item.flightBack}` : item.content}
+                                                    {item.type === '交通' && item.transportMode === '飛機' ? `${item.flightOut} ✈ ${item.flightBack}` : item.content}
                                                 </div>
                                             </div>
-                                            <i className="fas fa-chevron-right text-slate-200"></i>
+                                            <i className="fas fa-pen text-slate-200 text-xs"></i>
                                         </div>
                                     ))}
                                 </div>
@@ -183,43 +190,52 @@
                         <div className="fixed inset-0 bg-slate-900/60 modal-blur z-[100] flex items-center justify-center p-6">
                             <div className="bg-white w-full max-w-sm rounded-[2.5rem] p-8 shadow-2xl animate-in zoom-in duration-200">
                                 <div className="flex justify-between items-center mb-6">
-                                    <h3 className="text-2xl font-[900] italic tracking-tighter text-slate-800 uppercase">{form.type} PLAN</h3>
-                                    {editingId && <button onClick={() => { setPlans({...plans, [selectedId]: plans[selectedId].filter(p => p.id !== editingId)}); setShowModal(false); }} className="text-red-400 font-bold text-xs hover:underline">DELETE</button>}
+                                    <h3 className="text-xl font-[900] italic tracking-tighter text-slate-800 uppercase">{form.type} 編輯</h3>
+                                    {editingId && <button onClick={() => { setPlans({...plans, [selectedId]: plans[selectedId].filter(p => p.id !== editingId)}); setShowModal(false); }} className="text-red-400 font-bold text-xs hover:underline uppercase tracking-widest">刪除項目</button>}
                                 </div>
 
                                 <div className="space-y-4">
                                     {form.type === '交通' && (
                                         <div className="flex gap-2 mb-2 overflow-x-auto no-scrollbar">
-                                            {['飛機', '火車/高鐵', '其它'].map(m => (
-                                                <button key={m} onClick={() => setForm({...form, transportMode: m})} className={`px-4 py-2 rounded-xl text-[10px] font-black transition ${form.transportMode === m ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'}`}>{m}</button>
+                                            {['飛機', '火車/高鐵', '巴士', '其它'].map(m => (
+                                                <button key={m} onClick={() => setForm({...form, transportMode: m})} className={`px-4 py-2 rounded-xl text-[10px] font-black transition ${form.transportMode === m ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-100 text-slate-400'}`}>{m}</button>
                                             ))}
                                         </div>
                                     )}
 
                                     {form.type === '交通' && form.transportMode === '飛機' ? (
                                         <div className="grid grid-cols-2 gap-2">
-                                            <input className="p-4 bg-slate-50 rounded-2xl font-bold outline-none border border-slate-100" placeholder="去程 (BR192)" value={form.flightOut} onChange={e => setForm({...form, flightOut: e.target.value.toUpperCase()})} />
-                                            <input className="p-4 bg-slate-50 rounded-2xl font-bold outline-none border border-slate-100" placeholder="回程 (BR191)" value={form.flightBack} onChange={e => setForm({...form, flightBack: e.target.value.toUpperCase()})} />
+                                            <div className="space-y-1">
+                                                <label className="text-[9px] font-black text-slate-400 uppercase ml-1">去程航班</label>
+                                                <input className="w-full p-4 bg-slate-50 rounded-2xl font-bold outline-none border border-slate-100" placeholder="如: BR192" value={form.flightOut} onChange={e => setForm({...form, flightOut: e.target.value.toUpperCase()})} />
+                                            </div>
+                                            <div className="space-y-1">
+                                                <label className="text-[9px] font-black text-slate-400 uppercase ml-1">回程航班</label>
+                                                <input className="w-full p-4 bg-slate-50 rounded-2xl font-bold outline-none border border-slate-100" placeholder="如: BR191" value={form.flightBack} onChange={e => setForm({...form, flightBack: e.target.value.toUpperCase()})} />
+                                            </div>
                                         </div>
                                     ) : (
-                                        <input className="w-full p-4 bg-slate-50 rounded-2xl font-bold outline-none border border-slate-100" placeholder="名稱/描述..." value={form.content} onChange={e => setForm({...form, content: e.target.value})} />
+                                        <div className="space-y-1">
+                                            <label className="text-[9px] font-black text-slate-400 uppercase ml-1">資訊描述</label>
+                                            <input className="w-full p-4 bg-slate-50 rounded-2xl font-bold outline-none border border-slate-100" placeholder="輸入詳細內容..." value={form.content} onChange={e => setForm({...form, content: e.target.value})} />
+                                        </div>
                                     )}
 
                                     <div className="bg-blue-50/50 p-6 rounded-[2rem] border border-blue-100 space-y-4">
                                         <div className="flex items-center">
-                                            <span className="w-16 text-[10px] font-black text-blue-500 uppercase">台幣 TWD</span>
+                                            <span className="w-20 text-[10px] font-black text-blue-500 uppercase tracking-widest">台幣 TWD</span>
                                             <input type="number" className="flex-1 bg-transparent border-b-2 border-blue-200 outline-none font-black text-blue-600 p-1" placeholder="0" value={form.costTwd} onChange={e => updateCost(e.target.value, true)} />
                                         </div>
                                         <div className="flex items-center">
-                                            <span className="w-16 text-[10px] font-black text-slate-400 uppercase">{currentTour.currency}</span>
+                                            <span className="w-20 text-[10px] font-black text-slate-400 uppercase tracking-widest">{currentTour.currency}</span>
                                             <input type="number" className="flex-1 bg-transparent border-b-2 border-slate-200 outline-none font-black text-slate-500 p-1" placeholder="0" value={form.costForeign} onChange={e => updateCost(e.target.value, false)} />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="flex gap-4 mt-10">
-                                    <button onClick={() => setShowModal(false)} className="flex-1 py-4 font-black text-slate-300 uppercase tracking-widest text-[10px]">Close</button>
-                                    <button onClick={savePlan} className="flex-[2] py-4 bg-blue-600 text-white rounded-2xl font-[900] shadow-xl shadow-blue-100 uppercase tracking-widest text-[10px]">Save Plan</button>
+                                    <button onClick={() => setShowModal(false)} className="flex-1 py-4 font-black text-slate-300 uppercase tracking-widest text-[11px]">關閉</button>
+                                    <button onClick={savePlan} className="flex-[2] py-4 bg-blue-600 text-white rounded-2xl font-[900] shadow-xl shadow-blue-100 uppercase tracking-widest text-[11px]">儲存計畫</button>
                                 </div>
                             </div>
                         </div>
