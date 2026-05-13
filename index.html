@@ -9,62 +9,71 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; }
+    </style>
 </head>
-<body class="bg-[#F8FAFC]">
+<body class="bg-[#F1F5F9]">
     <div id="root"></div>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
 
         const tourData = [
+            // 韓國
             { id: 1, region: "韓國 🇰🇷", city: "首爾", venue: "KSPO Dome", date: "2026 07/17–07/19" },
             { id: 2, region: "韓國 🇰🇷", city: "釜山", venue: "Busan Sajik Gymnasium", date: "2026 08/01–08/02" },
+            // 日本
             { id: 3, region: "日本 🇯🇵", city: "神奈川", venue: "K-Arena Yokohama", date: "2026 08/21–08/23" },
             { id: 4, region: "日本 🇯🇵", city: "佐賀", venue: "Saga Arena", date: "2026 08/29–08/30" },
             { id: 5, region: "日本 🇯🇵", city: "大阪", venue: "Osaka-jō Hall", date: "2026 09/09–09/10" },
             { id: 6, region: "日本 🇯🇵", city: "宮城", venue: "Sekisui Heim Super Arena", date: "2026 09/19–09/20" },
             { id: 7, region: "日本 🇯🇵", city: "長野", venue: "Big Hat", date: "2026 09/25–09/26" },
             { id: 8, region: "日本 🇯🇵", city: "千葉", venue: "LaLa arena TOKYO-BAY", date: "2026 10/10–10/11" },
-            { id: 9, region: "北美 🇺🇸", city: "達拉斯", venue: "The Bomb Factory", date: "2026 10/30" },
-            { id: 12, region: "北美 🇺🇸", city: "紐約", venue: "Madison Square Garden", date: "2026 11/07" },
-            { id: 17, region: "北美 🇺🇸", city: "洛杉磯", venue: "Peacock Theater", date: "2026 11/20" },
-            { id: 21, region: "亞洲 🇹🇼", city: "台北/桃園", venue: "NTSU Arena", date: "2027 01/09" },
-            { id: 22, region: "亞洲 🇭🇰", city: "香港", venue: "AsiaWorld-Arena", date: "2027 01/16" },
-            { id: 24, region: "亞洲 🇹🇭", city: "曼谷", venue: "Impact Arena", date: "2027 01/30" }
-            // ... 可自行補齊其餘場次
+            // 北美
+            { id: 9, region: "北美 🇺🇸🇨🇦🇲🇽", city: "達拉斯", venue: "The Bomb Factory", date: "2026 10/30" },
+            { id: 10, region: "北美 🇺🇸🇨🇦🇲🇽", city: "佛州", venue: "Pompano Beach Amphitheater", date: "2026 11/01" },
+            { id: 11, region: "北美 🇺🇸🇨🇦🇲🇽", city: "芝加哥", venue: "The Salt Shed", date: "2026 11/04" },
+            { id: 12, region: "北美 🇺🇸🇨🇦🇲🇽", city: "紐約", venue: "Madison Square Garden", date: "2026 11/07" },
+            { id: 13, region: "北美 🇺🇸🇨🇦🇲🇽", city: "多倫多", venue: "Queen Elizabeth Theatre", date: "2026 11/10" },
+            { id: 14, region: "北美 🇺🇸🇨🇦🇲🇽", city: "溫哥華", venue: "Queen Elizabeth Theatre", date: "2026 11/13" },
+            { id: 15, region: "北美 🇺🇸🇨🇦🇲🇽", city: "西雅圖", venue: "Showbox SoDo", date: "2026 11/15" },
+            { id: 16, region: "北美 🇺🇸🇨🇦🇲🇽", city: "舊金山", venue: "The Warfield", date: "2026 11/17" },
+            { id: 17, region: "北美 🇺🇸🇨🇦🇲🇽", city: "洛杉磯", venue: "Peacock Theater", date: "2026 11/20" },
+            { id: 18, region: "北美 🇺🇸🇨🇦🇲🇽", city: "墨西哥城", venue: "Arena Ciudad de México", date: "2026 11/24" },
+            // 亞洲
+            { id: 19, region: "亞洲 🇮🇩🇲🇾🇹🇼🇭🇰🇸🇬🇹🇭", city: "雅加達", venue: "ICE BSD Hall 5-6", date: "2026 12/05" },
+            { id: 20, region: "亞洲 🇮🇩🇲🇾🇹🇼🇭🇰🇸🇬🇹🇭", city: "吉隆坡", venue: "Unifi Arena", date: "2026 12/26" },
+            { id: 21, region: "亞洲 🇮🇩🇲🇾🇹🇼🇭🇰🇸🇬🇹🇭", city: "台北／桃園", venue: "NTSU Arena", date: "2027 01/09" },
+            { id: 22, region: "亞洲 🇮🇩🇲🇾🇹🇼🇭🇰🇸🇬🇹🇭", city: "香港", venue: "AsiaWorld-Arena", date: "2027 01/16" },
+            { id: 23, region: "亞洲 🇮🇩🇲🇾🇹🇼🇭🇰🇸🇬🇹🇭", city: "新加坡", venue: "Singapore Indoor Stadium", date: "2027 01/23" },
+            { id: 24, region: "亞洲 🇮🇩🇲🇾🇹🇼🇭🇰🇸🇬🇹🇭", city: "曼谷", venue: "Impact Arena", date: "2027 01/30" }
         ];
 
-        const regions = ["韓國 🇰🇷", "日本 🇯🇵", "北美 🇺🇸", "亞洲 🇹🇼"];
+        const regions = ["韓國 🇰🇷", "日本 🇯🇵", "北美 🇺🇸🇨🇦🇲🇽", "亞洲 🇮🇩🇲🇾🇹🇼🇭🇰🇸🇬🇹🇭"];
 
         function App() {
             const [selectedTourId, setSelectedTourId] = useState(null);
+            const [expandedRegion, setExpandedRegion] = useState(null);
             const [plans, setPlans] = useState({});
             const [showModal, setShowModal] = useState(false);
             const [tempItem, setTempItem] = useState({ type: '', content: '', cost: '' });
 
             useEffect(() => {
-                const saved = localStorage.getItem('bnd-plans-v2');
+                const saved = localStorage.getItem('bnd-tour-v3');
                 if (saved) setPlans(JSON.parse(saved));
             }, []);
 
             useEffect(() => {
-                localStorage.setItem('bnd-plans-v2', JSON.stringify(plans));
+                localStorage.setItem('bnd-tour-v3', JSON.stringify(plans));
             }, [plans]);
-
-            const openModal = (type) => {
-                setTempItem({ type, content: '', cost: '' });
-                setShowModal(true);
-            };
 
             const handleSave = () => {
                 if (!tempItem.content) return;
                 const newPlans = {...plans};
                 if (!newPlans[selectedTourId]) newPlans[selectedTourId] = [];
-                newPlans[selectedTourId].push({ 
-                    id: Date.now(), 
-                    ...tempItem, 
-                    cost: parseFloat(tempItem.cost || 0) 
-                });
+                newPlans[selectedTourId].push({ id: Date.now(), ...tempItem, cost: parseFloat(tempItem.cost || 0) });
                 setPlans(newPlans);
                 setShowModal(false);
             };
@@ -72,82 +81,88 @@
             const currentTour = tourData.find(t => t.id === selectedTourId);
 
             return (
-                <div className="max-w-xl mx-auto min-h-screen pb-10 px-4">
-                    <header className="py-8 text-center">
-                        <h1 className="text-4xl font-black text-[#2563EB] tracking-tighter">KNOCK ON VOL.2</h1>
-                        <div className="mt-2 text-xs font-bold text-white bg-black inline-block px-3 py-1 rounded-full uppercase">ONEDOOR Tour Tool</div>
+                <div className="max-w-xl mx-auto min-h-screen pb-20 px-4">
+                    <header className="py-10 text-center">
+                        <h1 className="text-4xl font-[900] text-blue-600 tracking-tight mb-2 italic">KNOCK ON VOL.2</h1>
+                        <p className="text-slate-400 font-bold text-sm tracking-widest uppercase">BOYNEXTDOOR Tour Planner</p>
                     </header>
 
                     {!selectedTourId ? (
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             {regions.map(region => (
-                                <div key={region} className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
-                                    <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center">
-                                        <span className="w-1.5 h-6 bg-blue-500 rounded-full mr-2"></span>{region}
-                                    </h3>
-                                    <div className="grid grid-cols-1 gap-3">
-                                        {tourData.filter(t => t.region.includes(region.substring(0,2))).map(t => (
-                                            <button 
-                                                key={t.id} 
-                                                onClick={() => setSelectedTourId(t.id)}
-                                                className="flex justify-between items-center p-4 bg-slate-50 hover:bg-blue-50 rounded-2xl transition-all border border-transparent hover:border-blue-200 group text-left"
-                                            >
-                                                <div>
-                                                    <div className="font-bold text-slate-700">{t.city}</div>
-                                                    <div className="text-xs text-slate-400">{t.date}</div>
-                                                </div>
-                                                <i className="fas fa-chevron-right text-slate-300 group-hover:text-blue-500"></i>
-                                            </button>
-                                        ))}
-                                    </div>
+                                <div key={region} className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden transition-all">
+                                    <button 
+                                        onClick={() => setExpandedRegion(expandedRegion === region ? null : region)}
+                                        className="w-full flex justify-between items-center p-6 hover:bg-slate-50 transition"
+                                    >
+                                        <span className="text-lg font-black text-slate-800">{region}</span>
+                                        <i className={`fas fa-chevron-${expandedRegion === region ? 'up' : 'down'} text-blue-500`}></i>
+                                    </button>
+                                    
+                                    {expandedRegion === region && (
+                                        <div className="px-4 pb-6 grid grid-cols-1 gap-2 animate-in slide-in-from-top duration-300">
+                                            {tourData.filter(t => t.region === region).map(t => (
+                                                <button 
+                                                    key={t.id} 
+                                                    onClick={() => setSelectedTourId(t.id)}
+                                                    className="flex justify-between items-center p-4 bg-slate-50 rounded-2xl hover:bg-blue-50 hover:border-blue-200 border border-transparent transition text-left"
+                                                >
+                                                    <div>
+                                                        <div className="font-bold text-slate-700">{t.city}</div>
+                                                        <div className="text-[10px] text-slate-400 font-medium uppercase mt-1">{t.venue}</div>
+                                                    </div>
+                                                    <div className="text-xs font-bold text-blue-400 italic">{t.date.split(' ')[1]}</div>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             ))}
                         </div>
                     ) : (
                         <div className="animate-in fade-in duration-500">
-                            <button onClick={() => setSelectedTourId(null)} className="mb-4 text-slate-500 font-bold flex items-center">
+                            <button onClick={() => setSelectedTourId(null)} className="mb-6 text-slate-500 font-bold flex items-center hover:text-blue-600">
                                 <i className="fas fa-arrow-left mr-2"></i> 返回區域選擇
                             </button>
                             
-                            <div className="bg-white rounded-[2rem] p-8 shadow-2xl border border-blue-100 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 p-6 opacity-10 text-6xl font-black italic">BND</div>
-                                <h2 className="text-3xl font-black text-slate-800">{currentTour.city}</h2>
+                            <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-blue-50 relative overflow-hidden">
+                                <h2 className="text-4xl font-black text-slate-800 mb-2 italic tracking-tighter">{currentTour.city}</h2>
                                 <a 
-                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(currentTour.venue)}`}
+                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(currentTour.venue + ' ' + currentTour.city)}`}
                                     target="_blank"
-                                    className="text-blue-500 font-bold flex items-center mt-1 hover:underline"
+                                    className="text-blue-500 font-bold flex items-center mb-1 group"
                                 >
-                                    <i className="fas fa-map-marker-alt mr-2"></i> {currentTour.venue}
+                                    <span className="bg-blue-100 p-2 rounded-full mr-3 group-hover:bg-blue-200 transition">
+                                        <i className="fas fa-location-dot"></i>
+                                    </span>
+                                    {currentTour.venue}
                                 </a>
-                                <p className="text-slate-400 text-sm mt-1">{currentTour.date}</p>
+                                <p className="text-slate-400 text-sm ml-10 font-medium">{currentTour.date}</p>
 
-                                <div className="grid grid-cols-2 gap-3 mt-8">
-                                    {[
-                                        {l:'🏠 住宿', i:'fa-hotel'}, {l:'✈️ 交通', i:'fa-plane'}, 
-                                        {l:'💰 花費', i:'fa-comment-dollar'}, {l:'📍 行程', i:'fa-calendar-day'}
-                                    ].map(item => (
+                                <div className="grid grid-cols-2 gap-3 mt-10">
+                                    {[{l:'🏠 住宿', i:'fa-bed'}, {l:'✈️ 交通', i:'fa-route'}, {l:'💰 花費', i:'fa-wallet'}, {l:'📍 行程', i:'fa-star'}].map(item => (
                                         <button 
                                             key={item.l}
-                                            onClick={() => openModal(item.l)}
-                                            className="flex items-center justify-center bg-blue-600 text-white p-4 rounded-2xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-200 transition"
+                                            onClick={() => { setTempItem({ type: item.l, content: '', cost: '' }); setShowModal(true); }}
+                                            className="flex items-center justify-center bg-slate-900 text-white p-4 rounded-2xl font-bold hover:scale-[1.02] active:scale-95 transition shadow-lg shadow-slate-200"
                                         >
-                                            <i className={`fas ${item.i} mr-2`}></i> {item.l}
+                                            <i className={`fas ${item.i} mr-2 text-blue-400`}></i> {item.l}
                                         </button>
                                     ))}
                                 </div>
 
-                                <div className="mt-8 space-y-4">
+                                <div className="mt-10 space-y-3">
                                     {(plans[selectedTourId] || []).map(item => (
-                                        <div key={item.id} className="group bg-slate-50 p-4 rounded-2xl flex justify-between items-center border border-slate-100">
+                                        <div key={item.id} className="bg-slate-50 p-5 rounded-3xl flex justify-between items-center border border-slate-100 group">
                                             <div>
-                                                <div className="text-[10px] font-black text-blue-500 uppercase tracking-widest">{item.type}</div>
-                                                <div className="text-slate-700 font-bold">{item.content}</div>
-                                                {item.cost > 0 && <div className="text-green-600 font-black mt-1">${item.cost}</div>}
+                                                <span className="text-[9px] font-black bg-blue-500 text-white px-2 py-0.5 rounded-full uppercase mb-1 inline-block">{item.type.split(' ')[1]}</span>
+                                                <div className="text-slate-800 font-bold text-lg leading-tight">{item.content}</div>
+                                                {item.cost > 0 && <div className="text-blue-600 font-black mt-1">$ {item.cost.toLocaleString()}</div>}
                                             </div>
                                             <button onClick={() => {
                                                 const updated = plans[selectedTourId].filter(i => i.id !== item.id);
                                                 setPlans({...plans, [selectedTourId]: updated});
-                                            }} className="text-slate-300 hover:text-red-500 p-2"><i className="fas fa-trash-alt"></i></button>
+                                            }} className="text-slate-300 hover:text-red-500 p-2 transition"><i className="fas fa-trash-can"></i></button>
                                         </div>
                                     ))}
                                 </div>
@@ -155,40 +170,38 @@
                         </div>
                     )}
 
-                    {/* 輸入對話框 (Modal) */}
                     {showModal && (
-                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-6 z-50">
-                            <div className="bg-white w-full max-w-sm rounded-[2rem] p-8 shadow-2xl animate-in zoom-in duration-200">
-                                <h3 className="text-xl font-black mb-6 flex items-center text-slate-800">
-                                    <i className="fas fa-edit mr-3 text-blue-500"></i> 新增 {tempItem.type}
-                                </h3>
-                                <div className="space-y-4">
+                        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-6 z-50">
+                            <div className="bg-white w-full max-w-sm rounded-[2.5rem] p-8 shadow-2xl animate-in zoom-in duration-200">
+                                <div className="text-blue-500 text-3xl mb-4"><i className="fas fa-circle-plus"></i></div>
+                                <h3 className="text-2xl font-black mb-6 text-slate-800">新增{tempItem.type}</h3>
+                                <div className="space-y-5">
                                     <div>
-                                        <label className="text-xs font-bold text-slate-400 ml-1">細節描述</label>
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">資訊描述</label>
                                         <input 
                                             autoFocus
-                                            className="w-full p-4 bg-slate-100 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none"
-                                            placeholder="例如: 某某飯店、BR192航班..."
+                                            className="w-full p-4 bg-slate-100 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none font-bold text-slate-700"
+                                            placeholder="輸入細節..."
                                             value={tempItem.content}
                                             onChange={e => setTempItem({...tempItem, content: e.target.value})}
                                         />
                                     </div>
                                     {tempItem.type === '💰 花費' && (
                                         <div>
-                                            <label className="text-xs font-bold text-slate-400 ml-1">金額</label>
+                                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">預估金額</label>
                                             <input 
                                                 type="number"
-                                                className="w-full p-4 bg-slate-100 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none"
-                                                placeholder="請輸入數字"
+                                                className="w-full p-4 bg-slate-100 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none font-bold text-slate-700"
+                                                placeholder="0"
                                                 value={tempItem.cost}
                                                 onChange={e => setTempItem({...tempItem, cost: e.target.value})}
                                             />
                                         </div>
                                     )}
                                 </div>
-                                <div className="flex gap-3 mt-8">
-                                    <button onClick={() => setShowModal(false)} className="flex-1 py-4 font-bold text-slate-400 bg-slate-100 rounded-2xl hover:bg-slate-200 transition">取消</button>
-                                    <button onClick={handleSave} className="flex-1 py-4 font-bold text-white bg-blue-600 rounded-2xl hover:bg-blue-700 shadow-lg shadow-blue-200 transition">儲存</button>
+                                <div className="flex gap-3 mt-10">
+                                    <button onClick={() => setShowModal(false)} className="flex-1 py-4 font-bold text-slate-400 hover:text-slate-600 transition">取消</button>
+                                    <button onClick={handleSave} className="flex-1 py-4 font-bold text-white bg-blue-600 rounded-2xl hover:bg-blue-700 shadow-xl shadow-blue-200 transition">完成</button>
                                 </div>
                             </div>
                         </div>
